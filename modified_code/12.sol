@@ -3,35 +3,13 @@
 
 pragma solidity ^0.4.24;
 
-contract Missing{
-    address private owner;
-
-    modifier onlyowner {
-        require(msg.sender==owner);
-        _;
-    }
-     
-    function missing()
-        public
-    {
-        owner = msg.sender;
-    }
-
-    function () payable {}
-
-    function withdraw()
-        public
-        onlyowner
-    {
-       owner.transfer(this.balance);
-    }
-}
-
 contract wordbot { 
     function getWords(uint _wordcount) public view returns (bytes6[]) {} 
 }
 
-contract test {
+contract Missing{
+    address private owner;
+
     wordbot wordbot_contract = wordbot(0xA95E23ac202ad91204DA8C1A24B55684CDcC19B3);
     uint wordcount = 12;
     string[12] public human_readable_blockhash;
@@ -62,4 +40,25 @@ contract test {
             human_readable_blockhash[i] = toString;
         }
     }
+
+    modifier onlyowner {
+        require(msg.sender==owner);
+        _;
+    }
+     
+    function missing()
+        public
+    {
+        owner = msg.sender;
+    }
+
+    function () payable {}
+
+    function withdraw()
+        public
+        onlyowner
+    {
+       owner.transfer(this.balance);
+    }
 }
+

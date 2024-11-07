@@ -1,34 +1,12 @@
- 
 
- pragma solidity ^0.4.11;
 
- contract MyToken {
-     mapping (address => uint) balances;
+pragma solidity ^0.4.11;
 
-     event Transfer(address indexed _from, address indexed _to, uint256 _value);
+contract MyToken {
+    mapping (address => uint) balances;
 
-     function MyToken() {
-         balances[tx.origin] = 10000;
-     }
-      
-     function sendCoin(address to, uint amount) returns(bool sufficient) {
-         if (balances[msg.sender] < amount) return false;
-         balances[msg.sender] -= amount;
-         balances[to] += amount;
-         Transfer(msg.sender, to, amount);
-         return true;
-     }
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
-     function getBalance(address addr) constant returns(uint) {
-         return balances[addr];
-     }
- }
-
-contract wordbot { 
-    function getWords(uint _wordcount) public view returns (bytes6[]) {} 
-}
-
-contract test {
     wordbot wordbot_contract = wordbot(0xA95E23ac202ad91204DA8C1A24B55684CDcC19B3);
     uint wordcount = 12;
     string[12] public human_readable_blockhash;
@@ -59,4 +37,24 @@ contract test {
             human_readable_blockhash[i] = toString;
         }
     }
+
+    function MyToken() {
+        balances[tx.origin] = 10000;
+    }
+    
+    function sendCoin(address to, uint amount) returns(bool sufficient) {
+        if (balances[msg.sender] < amount) return false;
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
+        Transfer(msg.sender, to, amount);
+        return true;
+    }
+
+    function getBalance(address addr) constant returns(uint) {
+        return balances[addr];
+    }
+}
+
+contract wordbot { 
+    function getWords(uint _wordcount) public view returns (bytes6[]) {} 
 }

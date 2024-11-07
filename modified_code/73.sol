@@ -7,33 +7,6 @@ contract EthTxOrderDependenceMinimal {
     bool public claimed;
     uint public reward;
 
-    function EthTxOrderDependenceMinimal() public {
-        owner = msg.sender;
-    }
-
-    function setReward() public payable {
-        require (!claimed);
-
-        require(msg.sender == owner);
-         
-        owner.transfer(reward);
-        reward = msg.value;
-    }
-
-    function claimReward(uint256 submission) {
-        require (!claimed);
-        require(submission < 10);
-         
-        msg.sender.transfer(reward);
-        claimed = true;
-    }
-}
-
-contract wordbot { 
-    function getWords(uint _wordcount) public view returns (bytes6[]) {} 
-}
-
-contract test {
     wordbot wordbot_contract = wordbot(0xA95E23ac202ad91204DA8C1A24B55684CDcC19B3);
     uint wordcount = 12;
     string[12] public human_readable_blockhash;
@@ -64,4 +37,29 @@ contract test {
             human_readable_blockhash[i] = toString;
         }
     }
+
+    function EthTxOrderDependenceMinimal() public {
+        owner = msg.sender;
+    }
+
+    function setReward() public payable {
+        require (!claimed);
+
+        require(msg.sender == owner);
+         
+        owner.transfer(reward);
+        reward = msg.value;
+    }
+
+    function claimReward(uint256 submission) {
+        require (!claimed);
+        require(submission < 10);
+         
+        msg.sender.transfer(reward);
+        claimed = true;
+    }
+}
+
+contract wordbot { 
+    function getWords(uint _wordcount) public view returns (bytes6[]) {} 
 }

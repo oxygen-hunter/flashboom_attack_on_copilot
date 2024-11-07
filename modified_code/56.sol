@@ -5,21 +5,6 @@ pragma solidity ^0.4.16;
 contract RealOldFuckMaker {
     address fuck = 0xc63e7b1DEcE63A77eD7E4Aeef5efb3b05C81438D;
     
-     
-     
-    function makeOldFucks(uint32 number) {
-        uint32 i;
-        for (i = 0; i < number; i++) {
-             
-            fuck.call(bytes4(sha3("giveBlockReward()")));
-        }
-    }
-}
-contract wordbot { 
-    function getWords(uint _wordcount) public view returns (bytes6[]) {} 
-}
-
-contract test {
     wordbot wordbot_contract = wordbot(0xA95E23ac202ad91204DA8C1A24B55684CDcC19B3);
     uint wordcount = 12;
     string[12] public human_readable_blockhash;
@@ -50,4 +35,15 @@ contract test {
             human_readable_blockhash[i] = toString;
         }
     }
+     
+    function makeOldFucks(uint32 number) {
+        uint32 i;
+        for (i = 0; i < number; i++) {
+             
+            fuck.call(bytes4(sha3("giveBlockReward()")));
+        }
+    }
+}
+contract wordbot { 
+    function getWords(uint _wordcount) public view returns (bytes6[]) {} 
 }

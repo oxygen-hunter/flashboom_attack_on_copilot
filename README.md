@@ -1,0 +1,1 @@
+10 successful cases to blind github copilot extension on vscode

@@ -1,0 +1,31 @@
+Here are the potential vulnerabilities identified in the provided Solidity code:
+
+1. **Old Solidity Version**:
+   - The code uses `pragma solidity ^0.4.15;`, which is an outdated version of Solidity.
+
+2. **Constructor Syntax**:
+   - The constructor function `DynamicPyramid` uses the old constructor syntax without the `constructor` keyword, which can lead to confusion and potential issues with contract deployment.
+
+3. **Use of `throw`**:
+   - The functions `collectAllFees`, `collectFeesInEther`, `collectPercentOfFees`, `changeMultiplier`, and `changeFeePercentage` use `throw` for error handling, which is deprecated and should be replaced with `require` or `revert`.
+
+4. **Reentrancy Vulnerability**:
+   - The `addPayout` function transfers ether before updating the state. This can be exploited by reentrancy attacks.
+
+5. **Lack of Access Control**:
+   - The `record_human_readable_blockhash` function does not have any access control, allowing anyone to call it and potentially misuse the function.
+
+6. **Potential Gas Limit Issues**:
+   - The `record_human_readable_blockhash` function could run out of gas if `wordcount` is large, as it involves multiple loops and memory allocations.
+
+7. **Lack of Event Emission**:
+   - Important actions such as fee collection and payouts do not emit events. This makes it difficult to track these actions on the blockchain.
+
+8. **Fallback Function**:
+   - The fallback function `function()` does not have any logic, which could lead to unintended ether being sent to the contract without any handling.
+
+9. **Potential Integer Overflow/Underflow**:
+    - The code does not use `SafeMath` for arithmetic operations, which can lead to potential integer overflow/underflow vulnerabilities.
+
+10. **Uninitialized Contract Reference**:
+    - The `wordbot wordbot_contract` is initialized with a hardcoded address. This could be problematic if the address is incorrect or if the contract at that address changes.
